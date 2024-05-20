@@ -357,6 +357,18 @@ server.use(/^(?!\/(public|livros|autores|categorias)).*$/, (req, res, next) => {
   }
 })
 
+server.get('/public/docs', (req, res) => {
+  const meuHtml = `
+     <h1>Documentação da API</h1>
+     <ul>
+            <li>GET /livros</li>
+            <li>POST /livros</li>
+            <li>GET /categorias</li>
+     </ul>
+    `
+    res.status(200).contentType("text/html").send(meuHtml)
+})
+
 https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.crt')
